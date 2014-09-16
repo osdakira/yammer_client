@@ -4,7 +4,8 @@ require "faraday"
 class Yammer
   BASE_URI = 'https://www.yammer.com'
 
-  def initialize(oauth_token, group_id: nil, replied_to_id: nil)
+  def initialize(oauth_token: nil, group_id: nil, replied_to_id: nil)
+    fail unless oauth_token
     @oauth_token = oauth_token
     @group_id = group_id
     @replied_to_id = replied_to_id
