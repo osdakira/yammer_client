@@ -1,4 +1,5 @@
 require "yammer_client/version"
+require "faraday"
 
 class Yammer
   BASE_URI = 'https://www.yammer.com'
@@ -7,10 +8,10 @@ class Yammer
     @oauth_token = oauth_token
     @group_id = group_id
     @replied_to_id = replied_to_id
-    @conn = Faraday::Connection.new(url: BASE_URI) do |builder|
-      builder.use Faraday::Request::UrlEncoded
-      builder.use Faraday::Response::Logger
-      builder.use Faraday::Adapter::NetHttp
+    @conn = ::Faraday::Connection.new(url: BASE_URI) do |builder|
+      builder.use ::Faraday::Request::UrlEncoded
+      builder.use ::Faraday::Response::Logger
+      builder.use ::Faraday::Adapter::NetHttp
     end
   end
 
